@@ -1,0 +1,64 @@
+<div ng-controller="ArticleListController" layout="column" ng-cloak class="md-inline-form">
+<md-toolbar class="md-table-toolbar md-default"  ng-show="!isFind">
+	<div class="md-toolbar-tools">
+		<h4 class="md-headline">Article</h4>
+		<span flex></span>
+		<md-button ng-click="add()">Add</md-button>
+		<md-button ng-click="search()">Search</md-button>
+	</div>
+</md-toolbar>
+<md-toolbar class="md-table-toolbar md-default" ng-show="isFind">
+<div class="md-toolbar-tools">	
+	<md-content>
+		<md-input-container>
+			<label>Date</label>
+			<md-datepicker ng-model="d1" ></md-datepicker>
+		</md-input-container>
+		<md-input-container>
+			<label>to</label>
+			<md-datepicker ng-model="d2" ></md-datepicker>
+		</md-input-container>
+		<md-input-container>
+			<input ng-model="name"/>
+		</md-input-container>
+
+		<md-button ng-click="find()">Find</md-button>
+		<md-button ng-click="cancel()">Cancel</md-button>
+	</md-content>
+</div>
+</md-toolbar>
+	
+	<md-table-container>
+	<table md-table>
+		<thead md-head>
+			<tr md-row>	
+				<th md-column>Name</th>
+				<th md-column>Category</th>
+				<th md-column>Created By</th>
+				<th md-column>Last Update</th>
+				<th md-column>Actions</th>
+			<tr>
+		</thead>
+		<tbody md-body>
+			<tr md-row ng-repeat="item in articles" ng-hide="item.id==articles.id">
+				<td md-cell>{{item.name}}</td>
+				<td md-cell>{{item.category.name}}</td>
+				<td md-cell>{{item.userCreated.username}}</td>
+				<td md-cell>{{item.dateUpdate}} -by {{item.userUpdate.username}}</td md-cell>
+				<td md-cell>
+					<md-button ng-click="edit(item)">
+					<md-icon md-svg-icon="images/material-design-icons-3.0.1/content/svg/production/ic_create_24px.svg" style="color:rgb(0, 255, 0)"></md-icon>
+					</md-button>
+					<md-button ng-click="del(item)">
+						<md-icon md-svg-icon="images/material-design-icons-3.0.1/content/svg/production/ic_clear_24px.svg" style="color:rgb(255, 0, 0)">
+						</md-icon>
+					</md-button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</md-table-container>
+<md-table-pagination md-limit="itemsPerPage" md-page="currentPage" md-total="{{totalItems}}" md-on-paginate="GetAll" ></md-table-pagination>
+</md-content>
+</div>
+</div>

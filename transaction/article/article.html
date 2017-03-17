@@ -1,0 +1,106 @@
+<div ng-controller="ArticleController" layout="column" ng-cloak class="md-inline-form">
+	<div >
+	<md-card>
+	<md-card-title>Article</md-card-title>
+	<md-card-content >
+		<div layout="row">
+			<md-input-container class="md-block" flex="100">
+				<label>Title</label>
+				<input ng-model="article.name" ng-disabled="discussion"/>
+			</md-input-container>
+
+			<md-button ng-hide="article.id" ng-click="saveArticle(article)" ng-disabled="discussion">Save</md-button>		
+			<md-button ng-show="article.id" ng-click="updateArticle(article)" ng-disabled="discussion">Update</md-button>
+			<md-button ng-show="article.id" ng-click="addArticle()" ng-disabled="discussion">Clear</md-button>
+			<md-button ng-show="article" ng-click="cancelArticle()" ng-disabled="discussion">Cancel</md-button>				
+			<!-- <md-autocomplete    
+				ng-model="article.category"
+	            md-no-cache="true"
+	            md-selected-item="article.category"
+	            md-search-text="searchTextCategory"
+	            md-items="category in getCategories(searchTextCategory)"
+	            md-item-text="category.name"                                
+	            md-min-length="0"
+	            md-autoselect="true"
+	            md-floating-label="Category"                                
+	            >
+	            <md-item-template>
+	                <span md-highlight-text="searchTextCategory" md-highlight-flags="^i">[{{category.name}}]</span>
+	            </md-item-template>
+	            <md-not-found>
+	                Not Found
+	            </md-not-found>
+	        </md-autocomplete>        -->     
+	    
+			
+		</div>
+
+		<div layout="row">
+			<md-input-container class="md-block" flex="30">
+		        <md-select ng-model="article.category" ng-model-options="{trackBy: '$value.id'}" ng-disabled="discussion">
+	                <md-option ng-repeat="category in categories" ng-value="category">
+	                {{category.name}}
+	                </md-option>
+	            </md-select>
+        	</md-input-container>
+	
+			<div flex="40">
+			<br/>
+			<br/>
+			<label>Tag : </label>
+			<span ng-repeat="tag in tagss">
+				<input type="checkbox"  checklist-value="tag.id" checklist-model="tagList.tagged" ng-disabled="discussion"/>{{tag.name}}
+				<!-- <md-switch ng-model="article.tags" aria.label="tag" class="md-warn">{{tag.name}}
+				</md-switch> -->
+			</span>
+		</div>
+					
+		</div>
+		<label>Content</label>	
+		<div layout="row" flex="100">
+		<textarea rows="150" cols="170" ng-model="article.content" ng-disabled="discussion"></textarea>		
+
+		</div>
+
+	</md-card-content>
+	</md-card>
+</div>
+
+	<div>
+	<md-card>
+	<md-card-title>Comment</md-card-title>
+	<md-card-content layout-gt-sm="row" layout-align="space-between">
+		<div layout-gt-xs="row">
+			<md-input-container class="md-block" flex-gt-xs>
+				<label>Content</label>
+				<input ng-model="discussion.content"/>
+			</md-input-container>
+			<md-button ng-hide="discussion.id" ng-click="saveDiscussion(discussion)">Save</md-button>
+			<md-button ng-show="discussion" ng-click="cancelDiscussion()">Cancel</md-button>						
+		</div>
+	</md-card-content>
+	</md-card>
+	</div>
+	
+<!-- Comment List	 -->
+	<div>
+		<md-table-container>
+		<table md-table>
+			<thead md-head>
+				<tr md-row>	
+					<th md-column>Date</th>
+					<th md-column>Name</th>
+					<th md-column>Comment</th>		
+				<tr>
+			</thead>
+			<tbody md-body>
+				<tr md-row ng-repeat="item in discusses" ng-hide="item.id==discusses.id">
+					<td md-cell>{{item.dateCreated}}</td>
+					<td md-cell>{{item.users.username}}</td>
+					<td md-cell>{{item.content}}</td>
+				</tr>
+			</tbody>
+		</table>
+		</md-table-container>
+	</div>
+</div>

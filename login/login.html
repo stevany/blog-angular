@@ -1,0 +1,32 @@
+<div ng-controller="LoginController" layout="column" ng-cloak class="md-inline-form">
+	<md-content  layout-gt-sm="row" layout-padding>
+	<div>
+		<h2>Login</h2>
+
+		<div layout-gt-xs="row">
+			<md-input-container class="md-block">
+				<label>Username</label>
+				<input ng-model="username">
+				<div ng-messages="userForm.username.$dirty && userForm.username.$error">
+					<div ng-message="required">This is required.</div>
+					<div ng-message="md-minlength">Username must be min 3 characters</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container class="md-block">
+				<label>Password</label>
+				<input ng-model="password" type="password">
+				<div ng-messages="userForm.password.$dirty && userForm.password.$error">
+					<div ng-message="required">This is required.</div>
+				</div>
+			</md-input-container>
+
+		</div>
+		<div>
+			<md-button ng-click="login()">Submit</md-button>
+		</div>
+		    <a href="#/user">Register</a>
+	</div>
+	</md-content>
+</div>
+

@@ -1,0 +1,79 @@
+<div ng-controller="UserController" layout="column" ng-cloak class="md-inline-form">
+	<div>
+	<md-card>
+	<md-card-title>User</md-card-title>
+	<md-card-content layout-gt-sm="row" layout-align="space-between">
+		<div layout="row">
+			<md-input-container class="md-block" flex="60">
+				<label>Username</label>
+				<input ng-model="user.username"/>
+				<div ng-messages="user.username.$dirty && user.username.$error">
+					<div ng-message="required">This is required.</div>
+					<div ng-message="md-minlength">Username must be min 3 characters</div>
+				</div>
+			</md-input-container>
+
+			<md-input-container class="md-block" flex="40" >
+				<label>Password</label>
+				<input ng-model="user.password" type="password" equals="{{user.passwordConfirm}}" required/>
+				<div ng-messages="user.password.$dirty && user.password.$error">
+					<div ng-message="required">This is required.</div>
+				</div>
+			</md-input-container>
+			<md-input-container class="md-block" flex="40">
+				<label>Password Confirm</label>
+				<input ng-model="user.passwordConfirm" type="password" equals="{{user.password}}" required/>
+				<div ng-messages="user.passwordConfirm.$dirty && user.passwordConfirm.$error">
+					<div ng-message="required">This is required.</div>
+				</div>
+			</md-input-container>
+			<div flex="80">
+				<br/>
+				<br/>
+				<label>Role</label>
+				<span ng-repeat="role in roless" >
+					<input type="checkbox"  checklist-value="role.id" checklist-model="roleList.roled" />{{role.name}}
+				</span>
+			</div>
+		
+			<md-input-container class="md-block" flex="25" >
+				<md-switch ng-model="user.active" aria-label="active" class="md-primary">
+	    		active
+	  			</md-switch>
+	  		</md-input-container>
+
+	
+			<md-button ng-hide="user.id" ng-click="save(user)">Add</md-button>
+			<md-button ng-show="user.id" ng-click="update(user)">Update</md-button>
+			<md-button ng-show="user" ng-click="cancel()">Cancel</md-button>						
+		</div>
+	</md-card-content>
+	</md-card>
+</div>
+
+<div ng-hide="!isLogIn">
+<md-table-container>
+	<table md-table>
+		<thead md-head>
+			<tr md-row>	
+				<th md-column>Name</th>
+
+				<th md-column>Actions</th>
+			<tr>
+		</thead>
+		<tbody md-body>
+			<tr md-row ng-repeat="item in users" ng-hide="item.id==user.id">
+				<td md-cell>{{item.username}}</td>
+	
+				<td md-cell>
+					<md-button ng-click="edit(item)">
+					<md-icon md-svg-icon="images/material-design-icons-3.0.1/content/svg/production/ic_create_24px.svg" style="color:rgb(0, 255, 0)"></md-icon>
+					</md-button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</md-table-container>
+</div>
+
+</div>

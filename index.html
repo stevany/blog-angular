@@ -1,0 +1,132 @@
+<html>
+<head>
+	<link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+	<link rel="stylesheet" type="text/css" href="node_modules/angular-material-data-table/dist/md-data-table.min.css" >
+		
+</head>
+<body ng-app="app" ng-controller="appController">
+  <div ng-show="isLogIn">
+    <md-content ng-cloak>
+    <md-toolbar layout="row" class="md-hue-3">
+      <div class="md-toolbar-tools">
+        <md-button class ="md-fab md-mini md-icon-button" ng-click="toggleLeft()" class="md-raised">
+          <md-tooltip>
+                    Main Menu
+                </md-tooltip>
+            <md-icon md-svg-icon="images/material-design-icons-3.0.1/action/svg/production/ic_view_list_48px.svg" aria-label="left-menu"></md-icon>
+        </md-button>
+        <span flex></span>
+        <md-button class="md-accent md-raised md-hue-1" arial-label="Exit" ng-click="logout()" >
+            <md-tooltip>
+                    Logout
+                </md-tooltip>
+            <md-icon md-svg-icon="images/material-design-icons-3.0.1/maps/svg/production/ic_directions_run_24px.svg" ></md-icon>
+            <label class="md-primary">logout</label>
+          </md-button>    
+      </div>
+    </md-toolbar>
+    </md-content>
+
+  <section layout="row" flex> 
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop md-whiteframe="4">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Altaire</h1>
+        <!-- <md-button ng-click="closeMenu()" class="md-accent">X</md-button> -->
+      </md-toolbar>
+
+      <md-content layout-margin>
+         <md-list>
+          <md-subheader class="md-no-sticky">Master</md-subheader>
+          <md-list-item ng-click="category()">
+            Category
+          </md-list-item>
+          <md-list-item  ng-click="tag()">
+            Tag
+          </md-list-item>
+          <md-list-item  ng-click="user()">
+            User
+          </md-list-item>
+          <md-list-item  ng-click="role()">
+            Role
+          </md-list-item>
+          <md-list-item  ng-click="module()">
+            Module
+          </md-list-item>
+
+          <md-divider></md-divider>
+          <md-subheader class="md-no-sticky">Transaction</md-subheader>
+          <md-list-item ng-click="article()">
+            Article
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </md-sidenav>
+    <div flex="25"></div>
+    <div layout="column" layout-align="top center">  
+    </div>
+  </div>
+
+  <ng-view></ng-view>
+
+  <div layout="column" layout-align="bottom center">
+      &copy;stevany - mariastevany9@gmail.com March, 2017 
+  </div>
+
+	<!-- Angular Material requires Angular.js Libraries -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="node_modules/angular/angular.min.js"></script>
+    <script  src="app.js" type="text/javascript" ></script>
+		<script src="node_modules/angular-route/angular-route.js" type="text/javascript" ></script>
+		<!-- // <script src="node_modules/angular-growl-v2/build/angular-growl.js" type="text/javascript" ></script>	 -->
+		<script src="node_modules/angular-cookies/angular-cookies.js" type="text/javascript" ></script>
+	  <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+		<script src="node_modules/angular-aria/angular-aria.min.js"></script>
+		<script src="node_modules/angular-messages/angular-messages.min.js"></script>
+		<script src="node_modules/hammer/hammer.min.js" type="text/javascript"></script>
+
+    <!-- Angular Material Library -->
+
+    <script src="node_modules/angular-material/angular-material.min.js"></script>
+    <script src="node_modules/angular-material-data-table/dist/md-data-table.min.js" ></script>
+
+
+    <script src="services/authenticationService.js"></script>
+    <script src="services/flashService.js"></script>
+    
+    <script src="home/homeController.js"></script>
+    <script src="login/loginController.js"></script>
+    
+
+    <!-- Master Category-->
+    <script src="master/category/categoryController.js"></script>
+    <script src="master/category/categoryService.js"></script>
+
+     <!-- Master Tag-->
+    <script src="master/tag/tagController.js"></script>
+    <script src="master/tag/tagService.js"></script>
+
+     <!-- Master User-->
+    <script src="master/user/userController.js"></script>
+    <script src="master/user/userService.js"></script>
+
+    <!-- Master Role-->
+    <script src="master/role/roleController.js"></script>
+    <script src="master/role/roleService.js"></script>
+    
+    <!-- Master Module-->
+    <script src="master/module/moduleController.js"></script>
+    <script src="master/module/moduleService.js"></script>
+
+
+     <!-- Transaction Article-->
+    <script src="transaction/article/articleListController.js"></script>  
+    <script src="transaction/article/articleController.js"></script>
+    <script src="transaction/article/articleService.js"></script>
+    <script src="directives/checklist-model.js"></script>
+
+
+
+     <!-- Transaction Discussion-->
+    <script src="transaction/discussion/discussionService.js"></script>
+</body>
+</html>
